@@ -13,7 +13,12 @@ import urllib.request
 import urllib.error
 
 # Configuration
-FIRECRAWL_API_KEY = os.environ.get("FIRECRAWL_API_KEY", "YOUR_API_KEY_HERE")
+FIRECRAWL_API_KEY = os.environ.get("FIRECRAWL_API_KEY")
+if not FIRECRAWL_API_KEY:
+    raise ValueError(
+        "FIRECRAWL_API_KEY environment variable not set!\n"
+        "Please set it: export FIRECRAWL_API_KEY='your-api-key'"
+    )
 FIRECRAWL_BASE_URL = "https://api.firecrawl.dev"
 REQUEST_TIMEOUT = 30
 MAX_SCRAPE_RETRIES = 2
